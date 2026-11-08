@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\GalleryItemController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PublicCatalogController;
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
     Route::apiResource('users', UserController::class)->except('show');
     Route::apiResource('categories', CategoryController::class)->except('show');
     Route::get('site-contact', [SiteContactController::class, 'show']);
