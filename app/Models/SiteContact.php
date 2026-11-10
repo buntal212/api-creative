@@ -7,9 +7,18 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['whatsapp', 'phone', 'email', 'address', 'instagram_url', 'business_hours'])]
+#[Fillable(['name', 'phone'])]
 class SiteContact extends Model
 {
     /** @use HasFactory<SiteContactFactory> */
     use HasFactory;
+
+    /** @var list<string> */
+    protected $hidden = [
+        'whatsapp',
+        'email',
+        'address',
+        'instagram_url',
+        'business_hours',
+    ];
 }

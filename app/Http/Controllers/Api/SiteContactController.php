@@ -9,29 +9,37 @@ use Illuminate\Http\Request;
 
 class SiteContactController extends Controller
 {
-    public function show(): JsonResponse
+    public function index(): JsonResponse
     {
-        return response()->json(SiteContact::query()->first() ?? new SiteContact);
+        return response()->json(SiteContact::query()->latest()->get());
     }
 
-    public function update(Request $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
-        $contact = SiteContact::query()->firstOrNew();
-        $contact->fill($this->validatedData($request));
-        $contact->save();
+        $contact = SiteContact::query()->create($this->validatedData($request));
 
-        return response()->json($contact);
+        return response()->json($contact, 201);
+    }
+
+    public function update(Request $request, SiteContact $siteContact): JsonResponse
+    {
+        $siteContact->update($this->validatedData($request));
+
+        return response()->json($siteContact->fresh());
+    }
+
+    public function destroy(SiteContact $siteContact): JsonResponse
+    {
+        $siteContact->delete();
+
+        return response()->json(status: 204);
     }
 
     private function validatedData(Request $request): array
     {
         return $request->validate([
-            'whatsapp' => ['nullable', 'string', 'max:30'],
-            'phone' => ['nullable', 'string', 'max:30'],
-            'email' => ['nullable', 'email', 'max:255'],
-            'address' => ['nullable', 'string', 'max:1000'],
-            'instagram_url' => ['nullable', 'url', 'max:255'],
-            'business_hours' => ['nullable', 'string', 'max:160'],
+            'name' => ['required', 'string', 'max:100'],
+            'phone' => ['required', 'string', 'max:30'],
         ]);
     }
 }

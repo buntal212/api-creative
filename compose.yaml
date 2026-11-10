@@ -1,36 +1,36 @@
 name: api-creative
 
 services:
-    app:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        restart: unless-stopped
-        working_dir: /var/www/html
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/html
 
-        volumes:
-            - ./:/var/www/html
+    volumes:
+      - ./:/var/www/html
 
-        networks:
-            - creative-network
+    networks:
+      - creative-network
 
-    nginx:
-        image: nginx:stable-alpine
-        restart: unless-stopped
+  nginx:
+    image: nginx:stable-alpine
+    restart: unless-stopped
 
-        ports:
-            - "127.0.0.1:8888:80"
+    ports:
+      - '127.0.0.1:8888:80'
 
-        volumes:
-            - ./:/var/www/html:ro
-            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    volumes:
+      - ./:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 
-        depends_on:
-            - app
+    depends_on:
+      - app
 
-        networks:
-            - creative-network
+    networks:
+      - creative-network
 
 networks:
-    creative-network:
-        driver: bridge
+  creative-network:
+    driver: bridge

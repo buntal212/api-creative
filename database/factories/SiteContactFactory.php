@@ -18,12 +18,8 @@ class SiteContactFactory extends Factory
     public function definition(): array
     {
         return [
-            'whatsapp' => '6281234567890',
+            'name' => fake()->name(),
             'phone' => '0821-2345-6789',
-            'email' => fake()->companyEmail(),
-            'address' => fake()->address(),
-            'instagram_url' => 'https://instagram.com/'.fake()->userName(),
-            'business_hours' => 'Senin - Sabtu, 08.00 - 17.00 WIB',
         ];
     }
 }

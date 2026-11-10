@@ -28,6 +28,7 @@ Use `search-docs` for detailed Tailwind CSS v4 patterns and documentation.
 In Tailwind v4, you configure Tailwind in CSS with the `@theme` directive. You don't need a separate `tailwind.config.js` file:
 
 <!-- CSS-First Config -->
+
 ```css
 @theme {
   --color-brand: oklch(0.72 0.11 178);
@@ -39,6 +40,7 @@ In Tailwind v4, you configure Tailwind in CSS with the `@theme` directive. You d
 In Tailwind v4, import Tailwind with a regular CSS `@import` statement instead of the `@tailwind` directives used in v3:
 
 <!-- v4 Import Syntax -->
+
 ```diff
 - @tailwind base;
 - @tailwind components;
@@ -50,29 +52,30 @@ In Tailwind v4, import Tailwind with a regular CSS `@import` statement instead o
 
 Tailwind v4 removed deprecated utilities. Use the replacements shown below. For opacity, drop the `*-opacity-*` class and append the value as a modifier on the existing color: `bg-blue-500 bg-opacity-50` becomes `bg-blue-500/50`, `text-white text-opacity-75` becomes `text-white/75`.
 
-| Deprecated | Replacement |
-|------------|-------------|
-| bg-opacity-* | bg-{color}/* |
-| text-opacity-* | text-{color}/* |
-| border-opacity-* | border-{color}/* |
-| divide-opacity-* | divide-{color}/* |
-| ring-opacity-* | ring-{color}/* |
+| Deprecated            | Replacement           |
+| --------------------- | --------------------- |
+| bg-opacity-*          | bg-{color}/*          |
+| text-opacity-*        | text-{color}/*        |
+| border-opacity-*      | border-{color}/*      |
+| divide-opacity-*      | divide-{color}/*      |
+| ring-opacity-*        | ring-{color}/*        |
 | placeholder-opacity-* | placeholder-{color}/* |
-| flex-shrink-* | shrink-* |
-| flex-grow-* | grow-* |
-| overflow-ellipsis | text-ellipsis |
-| decoration-slice | box-decoration-slice |
-| decoration-clone | box-decoration-clone |
+| flex-shrink-*         | shrink-*              |
+| flex-grow-*           | grow-*                |
+| overflow-ellipsis     | text-ellipsis         |
+| decoration-slice      | box-decoration-slice  |
+| decoration-clone      | box-decoration-clone  |
 
 ## Spacing
 
 Use `gap` utilities instead of margins for spacing between siblings:
 
 <!-- Gap Utilities -->
+
 ```html
 <div class="flex gap-8">
-    <div>Item 1</div>
-    <div>Item 2</div>
+  <div>Item 1</div>
+  <div>Item 2</div>
 </div>
 ```
 
@@ -81,9 +84,10 @@ Use `gap` utilities instead of margins for spacing between siblings:
 If existing pages and components support dark mode, new pages and components must support it the same way, typically using the `dark:` variant:
 
 <!-- Dark Mode -->
+
 ```html
 <div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    Content adapts to color scheme
+  Content adapts to color scheme
 </div>
 ```
 
